@@ -1,0 +1,265 @@
+/* Basic reset and structure */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+    background: linear-gradient(to bottom right, #102744, #e0eafc, #102744);
+    color: #1d3557;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  #app {
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 30px 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  /* Logo */
+  .logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .logo {
+    width: 80px;
+    height: auto;
+    filter: drop-shadow(0 0 5px #00aaff);
+  }
+  
+  /* Progress Bar */
+  #progressBar {
+    width: 100%;
+    background: #d9e2ec;
+    height: 8px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  #progressFill {
+    height: 8px;
+    width: 0%;
+    background: #0077cc;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+  }
+  
+  /* Step display */
+  .step {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  .step.active {
+    display: block;
+  }
+  h1, h2 {
+    margin-bottom: 20px;
+    color: #1d3557;
+  }
+  
+  /* General Buttons */
+  button {
+    padding: 12px 24px;
+    margin: 10px auto;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background: linear-gradient(to right, #25354b, #274875);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    max-width: 300px;
+  }
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+  #copyButton {
+    background: linear-gradient(to right, #ff416c, #ff4b2b);
+    font-weight: bold;
+  }
+  .nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .nav-buttons button {
+    flex: 1;
+    background: linear-gradient(to right, #25354b, #274875);
+    color: white;
+    font-weight: 500;
+  }
+  .language-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    margin-top: 20px;
+    
+  }
+  .language-buttons button {
+    width: 100%;
+    max-width: 250px;
+  }
+  
+  /* Flow buttons stacked like menu */
+  .flow-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .flow-buttons button {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  /* Checkbox Step Selector */
+  .step-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px auto;
+    max-width: 100%;
+  }
+  
+  .step-option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 16px;
+    border-radius: 12px;
+    background: #f8f9fa;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #1d3557;
+    border: 2px solid #1d3557;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    user-select: none;
+  }
+  .step-option:hover {
+    background-color: #edf2fa;
+    border-color: #0077cc;
+    transform: translateY(-2px);
+  }
+  .step-option input[type="checkbox"] {
+    display: none;
+  }
+  .step-option input[type="checkbox"]:checked + span {
+    color: #0077cc;
+    font-weight: bold;
+  }
+  .step-option input[type="checkbox"]:checked + span::before {
+    content: '✔ ';
+    color: #00cc99;
+  }
+  
+  /* Star Ratings */
+  .stars {
+    display: flex;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin: 20px 0;
+    gap: 10px;
+  }
+  .stars span {
+    cursor: pointer;
+    color: #5a5a5a;
+    transition: color 0.3s ease;
+  }
+  .stars span.selected {
+    color: #ffd700;
+    text-shadow: 0 0 8px #ffd700;
+  }
+  
+  /* Comment Box */
+  textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 15px 0;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: none;
+    resize: none;
+    background-color: #e6ecf3;
+    color: #1d3557;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+  }
+  
+  /* Summary + Copy UI */
+  #copyMessage {
+    margin: 15px 0;
+    font-style: italic;
+    color: #1d3557;
+  }
+  #copyMessage strong {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 1.5rem;
+    color: #ffd700;
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px #ffd700;
+  }
+  #manualCopyBox textarea {
+    background-color: #f0f4f8;
+    color: #1d3557;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    height: 80px;
+  }
+  
+  /* Email input */
+  #emailBox {
+    margin-top: 20px;
+    padding: 10px;
+    background: #f0f4f8;
+    border-radius: 10px;
+  }
+  #emailBox input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+  #emailBox button {
+    margin-top: 10px;
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    font-weight: bold;
+  }
+  
+  /* Footer */
+  footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 0.85rem;
+  }
+  footer a {
+    color: #78c4f5;
+    text-decoration: none;
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  

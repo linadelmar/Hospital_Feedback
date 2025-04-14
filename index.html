@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hospital Feedback</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+
+    <!-- Logo -->
+    <div class="logo-container">
+      <img src="logo.png" alt="Company Logo" class="logo" />
+    </div>
+
+    <!-- Progress Bar -->
+    <div id="progressBar"><div id="progressFill"></div></div>
+
+    <!-- Step 0: Language Selection -->
+    <div id="step-0" class="step active">
+      <h1>Select Language</h1>
+      <div class="language-buttons">
+      <button onclick="selectLanguage('en')">English</button>
+      <button onclick="selectLanguage('es')">Español</button>
+      </div>
+    </div>
+
+    <!-- Step 1: Choose Flow -->
+    <div id="step-1" class="step">
+      <h1 id="welcomeText">Welcome to Hospital Feedback</h1>
+      <div class="flow-buttons">
+        <button onclick="chooseFlow('live')">Live Feedback</button>
+        <button onclick="chooseFlow('full')">Full Process</button>
+        <button onclick="chooseFlow('partial')">Select Steps</button>
+      </div>
+    </div>
+
+  <!-- Step for Live Feedback -->
+<div id="step-live" class="step">
+  <h2>Emergency Room Live Feedback</h2>
+  <div id="live-timer">Total time: 0:00</div>
+
+  <div class="live-step">
+    <button onclick="startLiveStep('registration')">Start Registration</button>
+    <p id="live-registration"></p>
+
+    <button onclick="startLiveStep('triage')">Start Triage</button>
+    <p id="live-triage"></p>
+
+    <button onclick="startLiveStep('doctor')">Start Doctor Visit</button>
+    <p id="live-doctor"></p>
+  </div>
+
+  <button onclick="endLiveFeedback()">Finish & Rate</button>
+</div>
+  
+    <div id="step-select" class="step">
+        <h2>Select the steps you experienced:</h2>
+        <div class="step-options">
+          <label class="step-option">
+            <input type="checkbox" id="check-registration" />
+            <span>Registration</span>
+          </label>
+          <label class="step-option">
+            <input type="checkbox" id="check-triage" />
+            <span>Triage</span>
+          </label>
+          <label class="step-option">
+            <input type="checkbox" id="check-doctor" />
+            <span>Doctor</span>
+          </label>
+        </div>
+        <button onclick="startSelectedFlow()">Continue</button>
+      </div>
+      
+
+    <!-- Step 2: Registration -->
+    <div id="step-2" class="step">
+      <h2 id="registrationText">How was the registration experience?</h2>
+      <div class="stars" data-step="registration"></div>
+      <div class="nav-buttons">
+        <button id="back2" onclick="prevStep(1)">Back</button>
+        <button id="next2" onclick="goToNextRatingStep('registration')">Next</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Triage -->
+    <div id="step-3" class="step">
+      <h2 id="triageText">How was the triage experience?</h2>
+      <div class="stars" data-step="triage"></div>
+      <div class="nav-buttons">
+        <button id="back3" onclick="prevStep(2)">Back</button>
+        <button id="next3" onclick="goToNextRatingStep('triage')">Next</button>
+      </div>
+    </div>
+
+    <!-- Step 4: Doctor -->
+    <div id="step-4" class="step">
+      <h2 id="doctorText">How was your interaction with the doctor?</h2>
+      <div class="stars" data-step="doctor"></div>
+      <div class="nav-buttons">
+        <button id="back4" onclick="prevStep(3)">Back</button>
+        <button id="next4" onclick="goToNextRatingStep('doctor')">Next</button>
+      </div>
+    </div>
+
+    <!-- Step 5: Comments -->
+    <div id="step-5" class="step">
+      <h2 id="commentsLabel">Any additional comments?</h2>
+      <textarea id="comments" placeholder="Write something..."></textarea>
+      <div class="nav-buttons">
+        <button id="back5" onclick="prevStep(4)">Back</button>
+        <button id="submitButton" onclick="showSummary()">Submit</button>
+      </div>
+    </div>
+
+    <!-- Step 6: Summary -->
+    <div id="step-6" class="step">
+      <h2>Thank you!</h2>
+      <p id="copyMessage"></p>
+      <button id="googleButton" onclick="redirectToGoogle()" style="display: none;">Post on Google</button>
+
+      <!-- Optional email for poor feedback -->
+      <div id="emailBox" style="display: none; margin-top: 20px;">
+        <p>If you'd like us to follow up, enter your email:</p>
+        <input type="email" id="userEmail" placeholder="you@example.com" />
+        <button onclick="sendFollowUpEmail()">Send</button>
+      </div>
+
+      <!-- Manual Copy Fallback -->
+      <div id="manualCopyBox" style="margin-top: 20px;">
+        <p id="manualCopyTextLabel">Tap below to copy your comment before posting:</p>
+        <textarea id="manualCopyText" readonly></textarea>
+        <button id="copyButton" onclick="copyManually()">Copy Comment</button>
+      </div>
+    </div>
+
+    <!-- Admin Access -->
+    <div id="adminLogin" class="step">
+      <h2>Admin Dashboard</h2>
+      <input type="password" id="adminPass" placeholder="Enter admin password" />
+      <button onclick="accessDashboard()">Enter</button>
+    </div>
+
+    <footer id="footer">
+      <p><a href="#" onclick="alert('We respect your privacy. Feedback is anonymous.')">Privacy & Terms</a></p>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+  <script src="live.js"></script>
+
+</body>
+</html>
+
